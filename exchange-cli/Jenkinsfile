@@ -1,0 +1,24 @@
+pipeline {
+    agent {
+        node {
+            label 'nodejs'
+        }
+    }
+    stages {
+        stage('Install dependencies') {
+            steps {
+                dir ('exchang-cli') {
+                    sh 'npm instll'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                dir ('exchang-cli') {
+                    sh 'npm run build'
+                }
+            }
+        }
+    }
+}
+
