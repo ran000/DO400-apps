@@ -7,14 +7,14 @@ pipeline {
     stages {
         stage('Install dependencies') {
             steps {
-                dir ('exchang-cli') {
+                dir ('exchange-cli') {
                     sh 'npm install'
                 }
             }
         }
         stage('Build') {
             steps {
-                dir ('exchang-cli') {
+                dir ('exchange-cli') {
                     sh 'npm run build'
                 }
             }
