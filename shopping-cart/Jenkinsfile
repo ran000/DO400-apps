@@ -24,6 +24,16 @@ pipeline {
                 }
             }
         }
+        stage('Security Scan') {
+            steps {
+                dir('shopping-cart') { 
+                    sh '''
+                        oc process -f kubefiles/security-scan-template.yml -p PROJECT_NAME=${APP_NAMESPACE} -n ${APP_NAMESPACE} | oc replace -n ${APP_NAMESPACE} --force -f -
+                    '''
+                    sh "../tools/check-job-state.sh security-scans-trivy ${APP_NAMESPACE}"
+                }
+            }
+        }
         stage('Deploy') {
             steps {
                 dir('shopping-cart') { 
@@ -33,6 +43,5 @@ pipeline {
                 }
             }
         }
-
     }
 }
