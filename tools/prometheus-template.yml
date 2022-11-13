@@ -36,6 +36,8 @@ objects:
           - localhost:9090
       - job_name: jenkins
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         metrics_path: ${JENKINS_METRICS_PATH}
         static_configs:
           - targets: [${JENKINS_HOST}]
