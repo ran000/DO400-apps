@@ -2,7 +2,7 @@ pipeline{
     agent{
         label "maven"
     }
-    options { skipdefaultCheckout true }
+    options { skipDefaultCheckout true }
     stages{
         stage("Checkout"){
             steps{
